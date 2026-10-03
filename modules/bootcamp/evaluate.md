@@ -1,33 +1,25 @@
- # Bootcamp Evaluation Engine
+# Bootcamp Evaluation Engine (Persona: Franz)
 
-**Execution Trigger:** `/telc <level> correct bootcamp`
+**Execution Trigger:** `/telc b2 correct bootcamp`
 
-## 1. Internal Scoring & Adjustment Protocol
-*   Compare the user's submitted answers against your internally generated answer key for the custom drill.
-*   **The Healing Logic:**
-    *   For every weakness the user successfully masters in this drill, you MUST reduce its `priority_weight` in `memory/error_profile.json` (under the appropriate level key) by `0.3`. (If it reaches 0.0 or below, it is "cured" and its weight resets to 0.0).
-    *   For every weakness the user fails again, increase its `priority_weight` by `0.2` and keep it in the Active Focus.
+## 1. Scoring & Penalty Logic (The 15/20 Realistic Muscle Memory Protocol)
+When evaluating the user's answers, strictly apply the following logic BEFORE updating `memory/error_profile.json`:
 
-## 2. Processing Steps
+*   **Weight Update Rule:** A `priority_weight` ONLY decreases if the user achieves **15 consecutive correct answers** OR an **85% success rate over the last 20 attempts** (i.e., at least 17 correct out of 20) for that specific error category.
+*   **Zero Tolerance Reset:** If the user makes a mistake in a category, you MUST reset the `consecutive_correct` counter for that category to `0`. (The error is still recorded in the 20-attempt rolling window).
+*   **No Free Rides:** Do NOT reduce the `priority_weight` for random lucky guesses or partial points. The penalty weight remains high until the 15-streak or 85% threshold is met.
 
-### Step 1: The Bootcamp Scorecard
-Output a brief summary of what was tested and whether the user passed or failed that specific micro-skill.
+## 2. Evaluation Protocol
+1.  Analyze the user's submission line by line.
+2.  Identify all errors and classify them according to the `memory/error_profile.json` categories.
+3.  Output a brutal, no-nonsense breakdown of the errors (The Franz Method). Explain *why* it's wrong using mnemonic or structural logic.
+4.  Update the tracking counters internally for the JSON:
+    *   If correct: `consecutive_correct` + 1. Append `1` to `recent_attempts`.
+    *   If wrong: `consecutive_correct` = 0. Append `0` to `recent_attempts`.
+    *   Maintain `recent_attempts` array at a strict maximum length of 20 (drop oldest).
+5.  Only decrease the `priority_weight` (by 0.05) if `consecutive_correct >= 15` OR (sum of `recent_attempts` / length) >= 0.85.
 
-### Step 2: Error Breakdown (The Franz Method)
-Load `rules/persona_franz.md`. **ONLY output feedback for the INCORRECT answers.**
-
-Format each error as:
-`Übung [Number]: ~~[User's Answer]~~ -> **[Correct Answer]**`
-
-For EACH error, Franz will step in to supply:
-1. **The Franz Explanation:** Direct, rule-based debunking of exactly why the trap snapped shut.
-2. **Absurd Visual Mnemonic:** A vivid, atypically funny visual anchor.
-
-### Step 3: Update Error Cache
-Output a confirmation of the exact math applied to `memory/error_profile.json`. Highlight any newly "cured" weaknesses!
-
-**Example output for Step 3:**
-*Profile Updates:*
-*   *V2-Syntax: Mastered! Weight reduced (-0.3).*
-*   *Präpositionaladverbien: Failed. Weight increased (+0.2).*
-*(Make sure to dynamically update the actual `memory/error_profile.json` file in the background).*
+## 3. Output Format
+*   **Bootcamp Scorecard:** Show X/Y score for each Übung.
+*   **Error Breakdown:** Detailed explanation of failures.
+*   **Profile Updates:** State explicitly the current streak and rolling window status. Do NOT show the raw JSON to the user unless requested.
