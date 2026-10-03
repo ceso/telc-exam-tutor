@@ -1,0 +1,57 @@
+{
+  "telc_b2": {
+    "user_profile": {
+      "total_submissions": 0,
+      "average_writing_score": 0.0,
+      "average_sprachbausteine_score": 0.0
+    },
+    "telc_error_tracking": {
+      "writing_kriterium_I": {
+        "missing_leitpunkte": 0,
+        "priority_weight": 0.0
+      },
+      "writing_kriterium_II": {
+        "register_errors": 0,
+        "priority_weight": 0.0
+      },
+      "writing_kriterium_III": {
+        "v2_syntax_errors": 0,
+        "priority_weight": 0.0
+      },
+      "sprachbausteine_teil_1_grammatik": {
+        "display_name": "Sprachbausteine 1: Grammatik",
+        "prepositions_case_errors": 0,
+        "relative_pronoun_errors": 0,
+        "adjective_ending_errors": 0,
+        "connector_syntax_errors": 0,
+        "priority_weight": 0.0
+      },
+      "sprachbausteine_teil_2_lexik": {
+        "display_name": "Sprachbausteine 2: Lexik",
+        "collocation_redemittel_errors": 0,
+        "contextual_vocabulary_errors": 0,
+        "distractor_trap_failures": 0,
+        "priority_weight": 0.0
+      }
+    },
+    "active_strategy": "Analyze submissions to establish baseline weights across Writing and Sprachbausteine."
+  },
+  "telc_c1": {
+    "user_profile": {
+      "total_submissions": 0,
+      "average_writing_score": 0.0,
+      "average_sprachbausteine_score": 0.0
+    },
+    "telc_error_tracking": {},
+    "active_strategy": "Awaiting first C1 submission to build initial error baseline."
+  },
+  "telc_c2": {
+    "user_profile": {
+      "total_submissions": 0,
+      "average_writing_score": 0.0,
+      "average_sprachbausteine_score": 0.0
+    },
+    "telc_error_tracking": {},
+    "active_strategy": "Awaiting first C2 submission to build initial error baseline."
+  }
+}
