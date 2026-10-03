@@ -1,29 +1,29 @@
 # Writing Correction & Evaluation Engine
 
-**Execution Trigger:** `/telc b2 correct write`
+**Execution Trigger:** `/telc b2 correct schriftlich`
 
 ## 1. Internal Scoring Rubric (Max 45 Points)
 Evaluate the text strictly against these telc B2 criteria.
 **Calculation:** (Kriterium I + Kriterium II + Kriterium III) * 3 = Total Score.
-*Gatekeeper Rule: If Kriterium I or III is a D (0), the entire writing section is graded 0*.
+*Gatekeeper Rule: If Kriterium I or III is scored 0 (A2 oder darunter), the entire writing section is graded 0*.
 
-**I. Behandlung des Schreibanlasses (Adressatengerechtigkeit & Leitpunkte)**
-- **A (5 Pkt):** Voll angemessen. Mindestens 3 Leitpunkte (oder 2 + 1 eigener) fundiert bearbeitet. Jeder Punkt erfordert mehr als ein einziges Satzgefüge.
-- **B (3 Pkt):** Im Großen und Ganzen angemessen. Weniger als 3 Leitpunkte ohne Zusatzaspekt, oder 1 Leitpunkt + 1 Aspekt.
-- **C (1 Pkt):** Kaum noch akzeptabel. Nur 1 Leitpunkt oder nur 1 Zusatzaspekt bearbeitet.
-- **D (0 Pkt):** Thema verfehlt oder kein Leitpunkt fundiert behandelt.
+**I. Aufgabenbewältigung (Inhaltliche Angemessenheit)**
+- **B2 gut erfüllt (5 Pkt):** Zu 3 Leitpunkten bzw. 2 Leitpunkten und einem weiteren eigenen Aspekt verständlich geschrieben.
+- **B2 erfüllt (3 Pkt):** Zu 2 Leitpunkten bzw. 1 Leitpunkt und einem weiteren eigenen Aspekt verständlich geschrieben.
+- **B1 (1 Pkt):** Zu 1 Leitpunkt bzw. einem eigenen Aspekt geschrieben.
+- **A2 oder darunter (0 Pkt):** Zu 0 Leitpunkten und keinem eigenen Aspekt geschrieben.
 
-**II. Kommunikative Gestaltung (Kohäsion, Register & Wortschatz)**
-- **A (5 Pkt):** Register voll getroffen, flüssige Verknüpfungen (Konnektoren), gutes B2-Vokabular. Formale Merkmale (Absender, Datum, Betreff) sind vorhanden.
-- **B (3 Pkt):** Register schwankt, Leitpunkte sind linear ohne logische Verknüpfung aufgelistet, oder Wortschatz ist unter B2-Niveau.
-- **C (1 Pkt):** Starke Missachtung von Adressatenbezug und Register.
-- **D (0 Pkt):** Der Text ist an zentralen Stellen unklar oder widersprüchlich.
+**II. Kommunikative Gestaltung (Register & Textaufbau)**
+- **B2 gut erfüllt (5 Pkt):** Register voll getroffen, sehr gut aufgebauter und logischer Text.
+- **B2 erfüllt (3 Pkt):** Register weitgehend passend, Text ist logisch strukturiert.
+- **B1 (1 Pkt):** Register schwankt stark, Verknüpfungen (Konnektoren) fehlen oder sind fehlerhaft.
+- **A2 oder darunter (0 Pkt):** Starke Missachtung von Adressatenbezug und Register. Text ist an zentralen Stellen unklar.
 
 **III. Formale Richtigkeit (Syntax, Morphologie, Orthographie)**
-- **A (5 Pkt):** Keine oder nur vereinzelte Fehler, die das Verständnis nicht stören.
-- **B (3 Pkt):** Wenige Fehler, beim ersten Lesen verständlich.
-- **C (1 Pkt):** Viele Fehler, mehrmaliges Lesen nötig. Schreibabsicht gefährdet.
-- **D (0 Pkt):** Unverständlich wegen Fehlerhäufung.
+- **B2 gut erfüllt (5 Pkt):** Keine oder nur vereinzelte Fehler in Grammatik/Satzbau, die das Verständnis nicht stören.
+- **B2 erfüllt (3 Pkt):** Wenige Fehler, beim ersten Lesen verständlich.
+- **B1 (1 Pkt):** Viele Fehler, mehrmaliges Lesen nötig. Fehler stören das Verständnis deutlich.
+- **A2 oder darunter (0 Pkt):** Unverständlich wegen Fehlerhäufung.
 
 ## 2. Processing Steps
 

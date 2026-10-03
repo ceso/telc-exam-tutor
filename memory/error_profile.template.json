@@ -2,20 +2,26 @@
   "telc_b2": {
     "user_profile": {
       "total_submissions": 0,
-      "average_writing_score": 0.0,
-      "average_sprachbausteine_score": 0.0
+      "average_schriftlich_score": 0.0,
+      "average_sprachbausteine_score": 0.0,
+      "average_lesen_score": 0.0
     },
     "telc_error_tracking": {
-      "writing_kriterium_I": {
+      "schriftlich_kriterium_I": {
+        "display_name": "Schriftlicher Ausdruck: Aufgabenbewältigung",
         "missing_leitpunkte": 0,
         "priority_weight": 0.0
       },
-      "writing_kriterium_II": {
+      "schriftlich_kriterium_II": {
+        "display_name": "Schriftlicher Ausdruck: Kommunikative Gestaltung",
         "register_errors": 0,
+        "anglicisms": 0,
         "priority_weight": 0.0
       },
-      "writing_kriterium_III": {
+      "schriftlich_kriterium_III": {
+        "display_name": "Schriftlicher Ausdruck: Formale Richtigkeit",
         "v2_syntax_errors": 0,
+        "konjunktiv_errors": 0,
         "priority_weight": 0.0
       },
       "sprachbausteine_teil_1_grammatik": {
@@ -24,6 +30,8 @@
         "relative_pronoun_errors": 0,
         "adjective_ending_errors": 0,
         "connector_syntax_errors": 0,
+        "modalpartikeln_errors": 0,
+        "feste_phrasen_errors": 0,
         "priority_weight": 0.0
       },
       "sprachbausteine_teil_2_lexik": {
@@ -31,16 +39,39 @@
         "collocation_redemittel_errors": 0,
         "contextual_vocabulary_errors": 0,
         "distractor_trap_failures": 0,
+        "nomen_verb_verbindung_errors": 0,
+        "praepositionaladverb_errors": 0,
+        "passiversatz_errors": 0,
+        "idiom_errors": 0,
+        "priority_weight": 0.0
+      },
+      "lesen_teil_1_globalverstehen": {
+        "display_name": "Lesen 1: Globalverstehen",
+        "micro_detail_traps": 0,
+        "priority_weight": 0.0
+      },
+      "lesen_teil_2_detailverstehen": {
+        "display_name": "Lesen 2: Detailverstehen",
+        "synonym_traps": 0,
+        "absolutism_traps": 0,
+        "priority_weight": 0.0
+      },
+      "lesen_teil_3_selektives_lesen": {
+        "display_name": "Lesen 3: Selektives Lesen",
+        "dealbreaker_keyword_failures": 0,
+        "x_failure_traps": 0,
         "priority_weight": 0.0
       }
     },
-    "active_strategy": "Analyze submissions to establish baseline weights across Writing and Sprachbausteine."
+    "active_focus": "Baseline establishing...",
+    "active_strategy": "Awaiting submissions to build initial error baseline."
   },
   "telc_c1": {
     "user_profile": {
       "total_submissions": 0,
-      "average_writing_score": 0.0,
-      "average_sprachbausteine_score": 0.0
+      "average_schriftlich_score": 0.0,
+      "average_sprachbausteine_score": 0.0,
+      "average_lesen_score": 0.0
     },
     "telc_error_tracking": {},
     "active_strategy": "Awaiting first C1 submission to build initial error baseline."
@@ -48,8 +79,9 @@
   "telc_c2": {
     "user_profile": {
       "total_submissions": 0,
-      "average_writing_score": 0.0,
-      "average_sprachbausteine_score": 0.0
+      "average_schriftlich_score": 0.0,
+      "average_sprachbausteine_score": 0.0,
+      "average_lesen_score": 0.0
     },
     "telc_error_tracking": {},
     "active_strategy": "Awaiting first C2 submission to build initial error baseline."

@@ -1,6 +1,6 @@
 # Writing Generator Engine
 
-**Execution Trigger:** `/telc b2 generate write`
+**Execution Trigger:** `/telc b2 generate schriftliche`
 
 ## 0. Critical Constraints
 **THEME RESTRICTION:** You MUST randomly select between ONLY TWO possible themes for the general telc B2 exam:
@@ -70,4 +70,4 @@ b) mindestens zwei der folgenden Punkte und einen weiteren Aspekt Ihrer Wahl.
 
 *Franz hier! Schnapp dir eine Tasta und leg los. Schreibe deine E-Mail oder deinen Brief direkt hier in den Chat (mindestens 150 Wörter).*
 
-*Sobald du deinen Text abschickst, schalte ich in den Korrektur-Modus (`/telc b2 correct write`) und wir schauen uns gemeinsam an, wie gut dein "Movie Scene Setup", dein Rhythmus und deine Grammatik funktionieren. Viel Erfolg!*
+*Sobald du deinen Text abschickst, schalte ich in den Korrektur-Modus (`/telc b2 correct schriftliche`) und wir schauen uns gemeinsam an, wie gut dein "Movie Scene Setup", dein Rhythmus und deine Grammatik funktionieren. Viel Erfolg!*
