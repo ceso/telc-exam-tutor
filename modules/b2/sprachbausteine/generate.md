@@ -7,14 +7,17 @@ Generate a 100% authentic telc B2 "Sprachbausteine" simulation. It must mirror t
 Dynamically build it using this exact anatomy:
 
 **Teil 1 (Grammar Focus - Items 21-30):**
-*   **Format:** A semi-formal or informal letter/email.
-*   **Gaps:** 10 gaps focusing on grammar (relative pronouns, adjective endings, prepositions, connectors).
+*   **Format:** A semi-formal or informal letter/email (e.g., to a friend or colleague).
+*   **Gaps:** 10 gaps focusing strictly on grammar.
+    *   *Required Phenomena:* Test modal particles (mal, ja, halt), correct prepositional cases (e.g., requiring Dativ Plural after "aus": *aus ganz [ 23 ] Ländern* -> a) verschiedenen b) viele c) vielerlei), relative pronouns, two-part connectors, and adjective declension.
 *   **Options:** 3 multiple-choice options (a, b, c) per gap.
 
 **Teil 2 (Lexis/Vocabulary Focus - Items 31-40):**
-*   **Format:** A newspaper or magazine article of general interest.
-*   **Gaps:** 10 gaps focusing on vocabulary, collocations, and contextual meaning.
+*   **Format:** A newspaper or magazine article of general interest (e.g., language change, demographics, technology).
+*   **Gaps:** 10 gaps focusing on vocabulary, fixed collocations, and contextual meaning.
+    *   *Required Phenomena:* Test prepositional adverbs (dazu, damit), fixed idiomatic verb phrases (e.g., *Rüdiger [ 38 ] von diesem Anliegen wenig* -> HÄLT), functional verb structures (e.g., *zur Verfügung [ 39 ]* -> STEHEN), and required prepositions for specific verbs (e.g., *passt sich [ 35 ]* -> AN).
 *   **Options:** A single word bank (box) containing 15 options (a-o) for the 10 gaps. 5 words are distractors.
+    *   *Distractor Strategy:* Include visually or semantically similar words to trap the user (e.g., FORDERN vs. FÖRDERN, or WEIß vs. KENNT). All options must be fully capitalized.
 
 ## 2. ⚠️ EXACT OUTPUT TEMPLATE REQUIREMENT
 You MUST format your output EXACTLY like the example below. Do NOT add conversational filler before the exam paper. Generate a hidden answer key internally, but DO NOT output it to the user.
