@@ -1,4 +1,4 @@
-# Writing Correction & Evaluation Engine
+# Schriftlich Correction & Evaluation Engine
 
 **Execution Trigger:** `/telc b2 correct schriftlich`
 
@@ -34,7 +34,7 @@ Physically count the words in the user's submission. Display the result at the v
 ### Step 1: Struktureller Audit & Form-Check (telc B2 Guidelines)
 Check the text for the following mandatory elements based on the official telc guidelines:
 - **Wortanzahl:** Mindestens 150 Wörter.
-- **Formale Struktur:** Betreff, Anrede, Einleitung, Hauptteil, Schluss, Grußformel und Unterschrift müssen zwingend vorhanden sein.
+- **Formale Struktur (E-Mail):** Betreff, Anrede, Einleitung, Hauptteil, Schluss, Grußformel und Unterschrift müssen vorhanden sein. (Absender, Anschrift und Datum sind HIER NICHT ERFORDERLICH und dürfen auf keinen Fall als Fehler gewertet werden!)
 - **Leitpunkte (Maximal 3):** Es dürfen exakt 3 Leitpunkte behandelt werden (entweder 3 vorgegebene oder 2 vorgegebene + 1 eigener). Ausufernde Ideen oder mehr Leitpunkte geben keine Extrapunkte!
 - **Absätze:** Jeder bearbeitete Leitpunkt MUSS in einem eigenen Absatz stehen.
 - **Logische Reihenfolge:**

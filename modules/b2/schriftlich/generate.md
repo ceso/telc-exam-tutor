@@ -1,6 +1,6 @@
-# Writing Generator Engine
+# Schriftlich Generator Engine
 
-**Execution Trigger:** `/telc b2 generate schriftliche`
+**Execution Trigger:** `/telc b2 generate schriftlich`
 
 ## 0. Critical Constraints
 **THEME RESTRICTION:** You MUST randomly select between ONLY TWO possible themes for the general telc B2 exam:
@@ -17,7 +17,7 @@ Dynamically build it using this exact anatomy:
 3.  **User Situation:** 2-3 sentences explaining the user's perspective (e.g., complaint, inquiry).
 4.  **Task Directives:** The choice to address 3 Leitpunkte or 2 Leitpunkte + 1 custom aspect.
 5.  **Four Leitpunkte:** Four bullet points to address based on the selected theme.
-6.  **Formal Constraints:** Reminders about letter components and the 150-word minimum.
+6.  **Formal Constraints:** Reminders about E-Mail components and the 150-word minimum. Demand ONLY Betreffzeile, Anrede, Einleitung, Schluss, Grußformel, Unterschrift.
 7.  **Mandatory Append:** The Franz intro and `***` block.
 
 ## 2. ⚠️ EXACT OUTPUT TEMPLATE REQUIREMENT
@@ -49,7 +49,7 @@ Strandpromenade 12
 
 Sie haben die zweiwöchige Sprachreise gebucht und daran teilgenommen. Leider waren Sie überhaupt nicht zufrieden, da viele Versprechungen aus der Anzeige nicht eingehalten wurden (z.B. große Gruppen, schlechtes Zimmer, kein Freizeitprogramm).
 
-Schreiben Sie einen Brief an den Veranstalter, in dem Sie sich beschweren.
+Schreiben Sie eine E-Mail an den Veranstalter, in der Sie sich beschweren.
 
 *Behandeln Sie darin entweder*
 a) mindestens drei der folgenden Punkte
@@ -61,13 +61,13 @@ b) mindestens zwei der folgenden Punkte und einen weiteren Aspekt Ihrer Wahl.
 • Vergleichen Sie Ihre Erlebnisse mit den Versprechungen in der Werbeanzeige.
 • Fordern Sie eine angemessene Lösung (z.B. finanzielle Entschädigung) und setzen Sie eine Frist.
 
-*Bevor Sie den Brief schreiben, überlegen Sie sich eine passende **Reihenfolge der Punkte**, eine passende **Einleitung** und einen passenden **Schluss**. Vergessen Sie nicht **Ihren Absender, die Anschrift, das Datum, die Betreffzeile, die Anrede und die Schlussformel**.*
+*Bevor Sie die E-Mail schreiben, überlegen Sie sich eine passende **Reihenfolge der Punkte**, eine passende **Einleitung** und einen passenden **Schluss**. Vergessen Sie nicht die **Betreffzeile**, die **Anrede** und die **Schlussformel**.*
 
 *Schreiben Sie mindestens 150 Wörter.*
 
 ***
 **--------------------- END OF TASK --------------------**
 
-*Franz hier! Schnapp dir eine Tasta und leg los. Schreibe deine E-Mail oder deinen Brief direkt hier in den Chat (mindestens 150 Wörter).*
+*Franz hier! Schnapp dir eine Tasta und leg los. Schreibe deine E-Mail direkt hier in den Chat (mindestens 150 Wörter).*
 
-*Sobald du deinen Text abschickst, schalte ich in den Korrektur-Modus (`/telc b2 correct schriftliche`) und wir schauen uns gemeinsam an, wie gut dein "Movie Scene Setup", dein Rhythmus und deine Grammatik funktionieren. Viel Erfolg!*
+*Sobald du deinen Text abschickst, schalte ich in den Korrektur-Modus (`/telc b2 correct schriftlich`) und wir schauen uns gemeinsam an, wie gut dein "Movie Scene Setup", dein Rhythmus und deine Grammatik funktionieren. Viel Erfolg!*
