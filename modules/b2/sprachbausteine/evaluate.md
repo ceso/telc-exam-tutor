@@ -1,36 +1,34 @@
-# Sprachbausteine Evaluation Engine
+# Sprachbausteine — Evaluator
 
-**Execution Trigger:** `/telc b2 correct sprachbausteine`
+Trigger: `/telc b2 correct sprachbausteine [part]`. Load slot `sb<part>` (`uv run $SKILL_DIR/tools/tutor.py task show --slot sb1`), the user's answers, `rules/feedback_format.md`.
 
-## 1. Internal Scoring Protocol
-*   Compare the user's submitted answers (21-40) against the internally generated answer key.
-*   **Calculation:** Each correct item is worth 1.5 points. Total maximum is 30 points (10% of the whole exam).
-*   Total Score = (Number of correct answers) * 1.5.
+## Steps (follow in order)
+1. Mark each gap against the key. Blank = wrong. Count correct gaps.
+2. `uv run $SKILL_DIR/tools/tutor.py score sb<part> --correct N --record` (10 × 1.5 P). Copy its numbers.
+3. For each wrong gap quote the deciding sentence from saved `material.gap_text`, show the correct word, and explain WHY the user's choice fails *in that sentence* (case, agreement, word order, collocation, meaning). Word-order gaps: Franz's forces/boxes logic. Lexis: name the collocation or near-synonym trap.
+4. Record, grouping wrong gaps by their saved `category`: `uv run $SKILL_DIR/tools/tutor.py errors <category>=<n> …`. Then `tutor.py task graded --slot sb<part>` (do not clear).
+5. Tips only if relevant: T1 — official [Tipps p. 9]: if you know the answer at once, fill the gap before reading the options, then compare; otherwise check which option fits in Genus/Numerus/Kasus (skill tip: test all three options in the sentence). T2 — official [Tipps p. 10]: read the text first without the box, five words are left over, never leave a gap empty (an empty gap cannot score; the manuals do not say whether wrong answers are penalised, so guess); skill tip: cross out used words, fill sure gaps first.
+6. If the user disputes a gap and a second answer is genuinely defensible: concede, say the item was flawed, and do not count it against them (re-run `score` only if the first run was not yet recorded; otherwise tell the user the corrected count and do NOT record again).
 
-## 2. Processing Steps
+## Output template (format example only, never reuse content)
+```
+**Sprachbausteine · Teil 1: 7 / 10 richtig = 10,5 von 15 Punkten (70 %)** — Gut, die Präpositionen haben dich erwischt.
 
-### Step 1: The Scorecard
-Output this exact table:
-| Bereich | Richtig | Falsch | Rohpunkte |
-| :--- | :---: | :---: | :---: |
-| **Teil 1 (Grammatik)** | [x/10] | [y/10] | [x * 1.5] / 15 |
-| **Teil 2 (Lexik)** | [x/10] | [y/10] | [x * 1.5] / 15 |
-**Ergebnis Sprachbausteine:** `[Total Score] / 30 Punkte`
+| Lücke | Du | Lösung | Grund |
+| :-- | :-- | :-- | :-- |
+| 1 | b | a | „Ich freue mich **auf** Ihr Angebot“ (sich freuen auf + Akk, Zukunft) |
+| 6 | c | b | `deshalb` steht in Position 1, `weil` schickt das Verb ans Ende |
 
-### Step 2: Error Breakdown (The Franz Method)
-Load `rules/persona_franz.md` and update `memory/error_profile.json` (specifically using the "telc_b2" key). **ONLY output feedback for the INCORRECT answers.** Do not over-explain correct answers.
+**Top-3 Lektionen**
+1. ~~freue mich über~~ → **freue mich auf** · Warum: *über* = schon passiert, *auf* = noch nicht. Bild: ein Geschenk, das man schon schüttelt, aber noch nicht auspackt. `case_prepositions`
+2. …
 
-Format each error as:
-`Lücke [Number]: ~~[User's Answer]~~ -> **[Correct Answer]**`
+**Nächster Schritt:** Sprachbausteine 2 (≈ 20 Min.).
+```
+Tool calls: `score sb1 --correct 7 --record` → `errors case_prepositions=2 connectors_variety=1` → `task graded --slot sb1`.
 
-For EACH error, Franz will step in to supply:
-1. **The Franz Explanation:**
-   * *For Teil 1 (Grammar):* Explain using Franz's "Look left, look right" logic (e.g., "Look right: the preposition 'aus' demands Dativ. Look left: 'Ländern' is Plural. Therefore: Adjektivendung -en."). You MUST explicitly explain why the user's chosen option is grammatically impossible in that specific slot (e.g., explaining why a two-part connector like "zwar... aber" doesn't fit the sentence's contrast logic compared to "nicht nur... sondern auch").
-   * *For Teil 2 (Lexis):* Explain using Franz's "Words travel in packs" logic. You MUST explicitly debunk the distractor the user fell for. Explain why the correct word forms a fixed collocation (e.g., *Nomen-Verb-Verbindung* like *zur Verfügung stehen*) or requires a specific preposition, and explain exactly why the user's choice is a semantic or visual trap (e.g., "You chose FÖRDERN (to support), but the context demands FORDERN (to demand)").
-2. **Absurd Visual Mnemonic:** A vivid, atypically funny visual anchor to remember the grammar hook or collocation.
-3. **Native Idiomatic Refinement:** Provide a brief note on how a native speaker actually uses this word/grammar structure in daily life, explaining *why* it feels natural (e.g., rhythm, efficiency, cultural flow).
-
-### Step 3: Update Error Cache
-Extract the grammar/lexis categories of the failed items and format them to dynamically update `memory/error_profile.json`.
-* Use specific categories matching the exam (e.g., *Modalpartikeln, Präpositionen mit Kasus, Zweiteilige Konnektoren, Feste Nomen-Verb-Verbindungen, Optic/Semantic Distractors*).
-* Highlight the highest-weighted weak spots the user must target in their next session.
+## Common failure modes to avoid
+- Own arithmetic for points; forgetting `--record`; recording twice after a dispute.
+- Explaining the right word without saying why the user's word fails in THAT sentence.
+- Wrong or invented category keys; more than 3 lessons; free-form layout.
+- Revealing the key before the user answered; grading against the wrong slot (sb1 vs sb2).

@@ -1,73 +1,43 @@
-# Schriftlich Generator Engine
+# Schriftlicher Ausdruck — Generator
 
-**Execution Trigger:** `/telc b2 generate schriftlich`
+Trigger: `/telc b2 generate schriftlich`. Facts: `rules/telc_b2_architecture.md` §3 and §5. 30 min, ≥ 150 words, choose ONE of two tasks.
 
-## 0. Critical Constraints
-**THEME RESTRICTION:** You MUST randomly select between ONLY TWO possible themes for the general telc B2 exam:
-- **Bitte um Informationen** (Requesting details based on an advertisement)
-- **Beschwerde** (Complaining about a product or service)
+## Build (always TWO tasks, as in the real exam)
+Pick two different scenarios from Anhang T (e.g. T7 Bildung, T12 Reisen, T10 Dienstleistungen, T13 Freizeit), not the last one used.
+- **Aufgabe A — Bitte um Informationen:** an advertisement/notice (≈ 60–110 words; counted official sample ads are ≈ 75–120 words: Jugendcamp 75, Secura ≈ 100, Handbuch Radel ≈ 120; the 60–110 range is skill design) for an offer; the candidate writes a semi-formal email to the provider.
+- **Aufgabe B — Beschwerde:** an advertisement (or email) for an offer the candidate has already used (same length), plus a one-sentence situation ("Sie waren nicht zufrieden. Schreiben Sie eine Beschwerde an …"). Official complaint tasks always react to a given ad/text ([TIPPS] p. 14, p. 17), and a Leitpunkt may refer to it ("Erwartungen nach der Lektüre der Werbeanzeige").
+Each task has **4 Leitpunkte** as official imperatives (the official samples use e.g. "Beschreiben Sie…", "Legen Sie dar…", "Erläutern Sie…", "Erklären Sie…", "Stellen Sie weitere Fragen…"; other verbs such as "Fragen Sie nach…" are skill design). The candidate is given four Leitpunkte but must treat **only three of them, or two plus one own aspect of their choice** (official wording, Handbuch p. 28: "Behandeln Sie darin entweder a) drei der folgenden Punkte oder b) zwei der folgenden Punkte und einen weiteren Aspekt Ihrer Wahl"). Never instruct the candidate to cover all four.
+Give each task a printed **Aufgabennummer** (e.g. "Aufgabe 1 (A)" / "Aufgabe 2 (B)"), because on the real exam the number must be copied onto the Antwortbogen ([TIPPS] p. 17-18, paper exam; in the digital exam there is no Antwortbogen, the text is typed into a field next to the task [HB-neu]).
 
-*NEVER generate a "Bewerbung" or any other topic.*
+## Self-verification (silent)
+1. The two tasks differ in topic and function; each Leitpunkt asks for different content (no overlap) and fits 3–5 sentences.
+2. The situation gives enough concrete facts (names, dates, prices) to refer to.
+3. Both texts are original B2 German; no real company names.
 
-## 1. Generation Protocol
-Generate a 100% authentic telc B2 "Schriftlicher Ausdruck" simulation. It must mirror the exact difficulty, layout, and bureaucratic/commercial flavor of the real exam.
-Dynamically build it using this exact anatomy:
-1.  **Source Context:** Where the user found the information.
-2.  **Scenario Box:** A simulated ad/text block (Company name, address, pitch, 3-4 bullet points).
-3.  **User Situation:** 2-3 sentences explaining the user's perspective (e.g., complaint, inquiry).
-4.  **Task Directives:** The choice to address 3 Leitpunkte or 2 Leitpunkte + 1 custom aspect.
-5.  **Four Leitpunkte:** Four bullet points to address based on the selected theme.
-6.  **Formal Constraints:** Reminders about E-Mail components and the 150-word minimum. Demand ONLY Betreffzeile, Anrede, Einleitung, Schluss, Grußformel, Unterschrift.
-7.  **Mandatory Append:** The Franz intro and `***` block.
+## Output template (format example only, never reuse content)
+```
+telc B2 · Schriftlicher Ausdruck  (30 Min. · mindestens 150 Wörter)
+Wählen Sie Aufgabe A ODER Aufgabe B. Schreiben Sie eine halbformelle E-Mail.
+Wichtig: Schreiben Sie zuerst die Nummer Ihrer Aufgabe auf den Antwortbogen (sonst keine Bewertung).
 
-## 2. ⚠️ EXACT OUTPUT TEMPLATE REQUIREMENT
-You MUST format your output EXACTLY like the example below. Do NOT add conversational filler before the exam paper.
+Aufgabe 1 (A) — Bitte um Informationen
+<ad text, 60–110 words>
+Schreiben Sie an <recipient>. Behandeln Sie darin entweder a) drei der folgenden Punkte oder b) zwei der folgenden Punkte und einen weiteren Aspekt Ihrer Wahl:
+• Beschreiben Sie …   • Fragen Sie nach …   • Legen Sie dar …   • Stellen Sie weitere Fragen …
+Überlegen Sie sich vor dem Schreiben eine passende Reihenfolge der Punkte, einen passenden Betreff, eine passende Anrede, Einleitung und einen passenden Schluss.
+Schreiben Sie mindestens 150 Wörter. (Absender, Adresse, Datum sind nicht nötig.)
 
-**30 Minuten Schriftlicher Ausdruck — telc Deutsch B2**
-**Thema: [Beschwerde / Bitte um Informationen]**
+Aufgabe 2 (B) — Beschwerde
+…
+--- ENDE DER AUFGABE ---
+```
+Franz line (also remind): skim both tasks briefly and decide quickly ("2 minutes" is a tip, not official), no first draft ([TIPPS]: do not pre-write and copy), no memorised text, copy the task number first; three points done properly beat four done thinly (tip). Cross-outs are fine if clear.
+Save the FULL text of both tasks: `uv run $SKILL_DIR/tools/tutor.py task save --slot schriftlich` with stdin (exactly tasks A and B, each with a distinct printed `number` and exactly 4 `leitpunkte`; the tool rejects anything else)
+`{"level":"b2","module":"schriftlich","topic":"T7","tasks":{"A":{"number":1,"text":"…","leitpunkte":["…","…","…","…"]},"B":{"number":2,"text":"…","leitpunkte":["…","…","…","…"]}}}`.
 
-Sie lesen folgende Werbeanzeige im Internet:
-
-=======================================================
-**Sprachreisen Sonnenschein GmbH**
-*Deutsch lernen, wo andere Urlaub machen!*
-
-Verbringen Sie zwei unvergessliche Wochen an der wunderschönen Ostsee und verbessern Sie Ihr Deutsch im Handumdrehen. Unser Angebot für junge Erwachsene (18–30 Jahre):
-
-• Intensivkurs: 20 Unterrichtsstunden pro Woche bei muttersprachlichen Lehrkräften
-• Kleine Lerngruppen (maximal 8 Personen) für schnellen Erfolg
-• Unterbringung im komfortablen Einzelzimmer mit Meerblick
-• Abwechslungsreiches Freizeit- und Kulturprogramm am Nachmittag
-
-Das Komplettpaket für nur 450 Euro pro Woche!
-
-Sprachreisen Sonnenschein GmbH
-Strandpromenade 12
-18119 Rostock-Warnemünde
-
-=======================================================
-
-Sie haben die zweiwöchige Sprachreise gebucht und daran teilgenommen. Leider waren Sie überhaupt nicht zufrieden, da viele Versprechungen aus der Anzeige nicht eingehalten wurden (z.B. große Gruppen, schlechtes Zimmer, kein Freizeitprogramm).
-
-Schreiben Sie eine E-Mail an den Veranstalter, in der Sie sich beschweren.
-
-*Behandeln Sie darin entweder*
-a) mindestens drei der folgenden Punkte
-*oder*
-b) mindestens zwei der folgenden Punkte und einen weiteren Aspekt Ihrer Wahl.
-
-• Erklären Sie den Grund für Ihr Schreiben.
-• Beschreiben Sie Ihre Erfahrungen während der Sprachreise und was genau schiefgelaufen ist.
-• Vergleichen Sie Ihre Erlebnisse mit den Versprechungen in der Werbeanzeige.
-• Fordern Sie eine angemessene Lösung (z.B. finanzielle Entschädigung) und setzen Sie eine Frist.
-
-*Bevor Sie die E-Mail schreiben, überlegen Sie sich eine passende **Reihenfolge der Punkte**, eine passende **Einleitung** und einen passenden **Schluss**. Vergessen Sie nicht die **Betreffzeile**, die **Anrede** und die **Schlussformel**.*
-
-*Schreiben Sie mindestens 150 Wörter.*
-
-***
-**--------------------- END OF TASK --------------------**
-
-*Franz hier! Schnapp dir eine Tasta und leg los. Schreibe deine E-Mail direkt hier in den Chat (mindestens 150 Wörter).*
-
-*Sobald du deinen Text abschickst, schalte ich in den Korrektur-Modus (`/telc b2 correct schriftlich`) und wir schauen uns gemeinsam an, wie gut dein "Movie Scene Setup", dein Rhythmus und deine Grammatik funktionieren. Viel Erfolg!*
+## Common failure modes to avoid
+- Leitpunkte that overlap, or that cannot be developed in 3–5 sentences.
+- No concrete facts in the ad; real company names; ad text far over 110 words.
+- Showing only one task; forgetting the printed task numbers or the form-element reminder.
+- Saving only Leitpunkte without the ad text (the evaluator needs it for Situierung).
+- Free-form layout instead of the template.

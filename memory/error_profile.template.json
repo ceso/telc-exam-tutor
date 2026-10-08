@@ -1,89 +1,44 @@
 {
-  "telc_b2": {
-    "user_profile": {
-      "total_submissions": 0,
-      "average_schriftlich_score": 0.0,
-      "average_sprachbausteine_score": 0.0,
-      "average_lesen_score": 0.0
-    },
-    "telc_error_tracking": {
-      "schriftlich_kriterium_I": {
-        "display_name": "Schriftlicher Ausdruck: Aufgabenbewältigung",
-        "missing_leitpunkte": 0,
-        "priority_weight": 0.0
-      },
-      "schriftlich_kriterium_II": {
-        "display_name": "Schriftlicher Ausdruck: Kommunikative Gestaltung",
-        "register_errors": 0,
-        "anglicisms": 0,
-        "priority_weight": 0.0
-      },
-      "schriftlich_kriterium_III": {
-        "display_name": "Schriftlicher Ausdruck: Formale Richtigkeit",
-        "v2_syntax_errors": 0,
-        "konjunktiv_errors": 0,
-        "priority_weight": 0.0
-      },
-      "sprachbausteine_teil_1_grammatik": {
-        "display_name": "Sprachbausteine 1: Grammatik",
-        "prepositions_case_errors": 0,
-        "relative_pronoun_errors": 0,
-        "adjective_ending_errors": 0,
-        "connector_syntax_errors": 0,
-        "modalpartikeln_errors": 0,
-        "feste_phrasen_errors": 0,
-        "priority_weight": 0.0
-      },
-      "sprachbausteine_teil_2_lexik": {
-        "display_name": "Sprachbausteine 2: Lexik",
-        "collocation_redemittel_errors": 0,
-        "contextual_vocabulary_errors": 0,
-        "distractor_trap_failures": 0,
-        "nomen_verb_verbindung_errors": 0,
-        "praepositionaladverb_errors": 0,
-        "passiversatz_errors": 0,
-        "idiom_errors": 0,
-        "priority_weight": 0.0
-      },
-      "lesen_teil_1_globalverstehen": {
-        "display_name": "Lesen 1: Globalverstehen",
-        "micro_detail_traps": 0,
-        "priority_weight": 0.0
-      },
-      "lesen_teil_2_detailverstehen": {
-        "display_name": "Lesen 2: Detailverstehen",
-        "synonym_traps": 0,
-        "absolutism_traps": 0,
-        "priority_weight": 0.0
-      },
-      "lesen_teil_3_selektives_lesen": {
-        "display_name": "Lesen 3: Selektives Lesen",
-        "dealbreaker_keyword_failures": 0,
-        "x_failure_traps": 0,
-        "priority_weight": 0.0
-      }
-    },
-    "active_focus": "Baseline establishing...",
-    "active_strategy": "Awaiting submissions to build initial error baseline."
-  },
-  "telc_c1": {
-    "user_profile": {
-      "total_submissions": 0,
-      "average_schriftlich_score": 0.0,
-      "average_sprachbausteine_score": 0.0,
-      "average_lesen_score": 0.0
-    },
-    "telc_error_tracking": {},
-    "active_strategy": "Awaiting first C1 submission to build initial error baseline."
-  },
-  "telc_c2": {
-    "user_profile": {
-      "total_submissions": 0,
-      "average_schriftlich_score": 0.0,
-      "average_sprachbausteine_score": 0.0,
-      "average_lesen_score": 0.0
-    },
-    "telc_error_tracking": {},
-    "active_strategy": "Awaiting first C2 submission to build initial error baseline."
+  "version": 2,
+  "note": "Shared error taxonomy + schema. Runtime state is created by tools/tutor.py in $TELC_HOME (default ~/.config/telc-tutor/profile.json). Every evaluator and the bootcamp must use ONLY these keys.",
+  "default_priors": [
+    "verb_position",
+    "case_prepositions",
+    "connectors_variety",
+    "adjective_endings",
+    "register_formality"
+  ],
+  "categories": {
+    "verb_position": {"name": "Verbstellung (V2, Nebensatz-Ende, Klammer)", "scope": "grammar"},
+    "middlefield_order": {"name": "Wortstellung im Mittelfeld (Boxen, Pronomen, nicht)", "scope": "grammar"},
+    "case_prepositions": {"name": "Kasus nach Präpositionen / Wechselpräpositionen / Verbrektion", "scope": "grammar"},
+    "adjective_endings": {"name": "Adjektivendungen", "scope": "grammar"},
+    "article_gender_agreement": {"name": "Artikel, Genus, Kongruenz", "scope": "grammar"},
+    "verb_forms_tense": {"name": "Zeitformen, Perfekt/Partizip, Passiv, Konjunktiv II", "scope": "grammar"},
+    "relative_pronouns": {"name": "Relativsätze und Relativpronomen", "scope": "grammar"},
+    "pronominaladverbien": {"name": "Pronominaladverbien (darauf, womit, ...)", "scope": "grammar"},
+    "connectors_variety": {"name": "Konnektoren: Variation und Syntax (obwohl, deshalb, trotzdem, ...)", "scope": "style"},
+    "register_formality": {"name": "Register (Sie-Form, Höflichkeit, Konjunktiv-Bitten, Stilbrüche)", "scope": "style"},
+    "word_choice_collocation": {"name": "Wortwahl, Kollokationen, Nomen-Verb-Verbindungen", "scope": "lexis"},
+    "spelling_caps_punctuation": {"name": "Rechtschreibung, Groß-/Kleinschreibung, Kommas", "scope": "form"},
+    "leitpunkte_coverage": {"name": "Leitpunkte nicht oder zu knapp bearbeitet", "scope": "task"},
+    "email_form_elements": {"name": "Betreff, Anrede, Einleitung, Schluss, Schlussformel", "scope": "task"},
+    "text_too_short": {"name": "Text unter 150 Wörtern (Leitpunkte zu knapp ausgeführt)", "scope": "task"},
+    "thema_situierung_verfehlt": {"name": "Thema oder Situierung verfehlt (falsche Textsorte/Funktion, falsche Anzeige)", "scope": "task"},
+    "simple_structures_only": {"name": "Nur einfache Strukturen (keine Nebensätze, Passiv, Konjunktiv): Komplexität zu niedrig", "scope": "style"},
+    "vocabulary_copied_from_prompt": {"name": "Wortschatz aus der Aufgabenstellung abgeschrieben statt eigener Ausdruck", "scope": "lexis"},
+    "lesen_detail_trap": {"name": "Lesen: falsches Detail in sonst richtiger Aussage (Teil 2)", "scope": "reading"},
+    "lesen_negation_trap": {"name": "Lesen: versteckte Verneinung / Absolutismus", "scope": "reading"},
+    "lesen_headline_trap": {"name": "Lesen 1: Überschrift passt zum Detail statt zum Gesamttext", "scope": "reading"},
+    "lesen_x_trap": {"name": "Lesen 3: Situation ohne Text (x) / Text nicht zu Ende gelesen", "scope": "reading"},
+    "lesen_other_trap": {"name": "Lesen 2: Weltwissen statt Text / Verwechslung von Personen, Zahlen, Daten / Fremdmeinung statt Autorenmeinung", "scope": "reading"},
+    "hoeren_falsch_vs_not_mentioned": {"name": "Hören: 'falsch' gewählt, obwohl nur 'nicht erwähnt' (oder umgekehrt)", "scope": "listening"},
+    "hoeren_paraphrase_trap": {"name": "Hören: Aussage paraphrasiert (andere Wörter), Schlüsselwort-Falle", "scope": "listening"},
+    "hoeren_detail_missed": {"name": "Hören: Detail/Zahl/Negation überhört", "scope": "listening"},
+    "sprechen_task_coverage": {"name": "Sprechen: Aufgabe nicht vollständig bearbeitet (Leitpunkt, Zeit, Partner einbeziehen)", "scope": "speaking"},
+    "sprechen_discourse_devices": {"name": "Sprechen: zu wenige Diskursmittel (Zustimmen/Widersprechen, Vorschläge, Rückfragen)", "scope": "speaking"},
+    "sprechen_range_complexity": {"name": "Sprechen: nur einfache Sätze und Wortschatz", "scope": "speaking"},
+    "sb_distractor_box": {"name": "Sprachbausteine 2: Distraktor oder Kontext falsch gewählt", "scope": "language_elements"},
+    "sb_grammar_gap": {"name": "Sprachbausteine 1: Form/Wortart-Lücke falsch", "scope": "language_elements"}
   }
 }

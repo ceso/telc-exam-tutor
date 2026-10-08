@@ -1,60 +1,50 @@
-# Sprachbausteine Generator Engine (Persona: Franz)
+# Sprachbausteine — Generator
 
-**Execution Trigger:** `/telc b2 generate sprachbausteine`
+Trigger: `/telc b2 generate sprachbausteine [1|2]` (default 1). Facts: `rules/telc_b2_architecture.md` §3–4. Official [HB p. 37–38]: 10 gaps × 1.5 P per part (15 P each, 30 P total; confirmed by the newer Handbuch edition's points table); minutes are telc's suggestion [Tipps p. 9–10]: ≈ 15 (T1) / ≈ 20 (T2), inside the shared 90 min with Lesen. Numbering is local (1–10) per part (skill design; the real test numbers items 21–30 and 31–40). Rotate topics (T1–T16).
 
-## 1. Generation Protocol
-Generate a 100% authentic telc B2 "Sprachbausteine" simulation. It must mirror the exact difficulty, layout, and grammar/lexis focus of the real exam.
-Dynamically build it using this exact anatomy:
+## Teil 1 — Grammatik-Lücken (E-Mail/Brief)
+Official [HB p. 37, Tipps p. 9]: semi-formal or informal correspondence (letter/email), 10 gaps, **3 options each, one correct**, focus on grammar; all word classes occur. Skill design: length and gap mix below.
+Build: a **semi-formal or informal email/letter of 150–200 words**, 10 gaps, **each with 3 options (a/b/c)** listed under the text. Gap mix (all word classes, max 2 of one type): declined adjective/article · preposition + case · pronoun (Personal/Relativ/Reflexiv) · conjunction (subordinating vs adverb with different word order) · Pronominaladverb · verb form (Konjunktiv II, Passiv, Partizip) · particle/fixed phrase.
+Save the full material as `material: {"gap_text":"...","options":[{"n":1,"choices":["a) …","b) …","c) …"]},...]}`.
+Distractors: each wrong option is wrong **in the sentence** for a nameable reason (case, agreement, word order consequence such as `deshalb` vs `weil`, collocation). Exactly one option fits.
+**Category per gap = ONE key only**: the most precise grammar key (`case_prepositions`, `adjective_endings`, `relative_pronouns`, `pronominaladverbien`, `verb_forms_tense`, `connectors_variety`, `article_gender_agreement`, `verb_position`); use `sb_grammar_gap` only when no precise key fits.
 
-**Teil 1 (Grammar Focus - Items 21-30):**
-*   **Format:** A semi-formal or informal letter/email (e.g., to a friend or colleague).
-*   **Gaps:** 10 gaps focusing strictly on grammar.
-    *   *Required Phenomena:* Test modal particles (mal, ja, halt), correct prepositional cases (e.g., requiring Dativ Plural after "aus": *aus ganz [ 23 ] Ländern* -> a) verschiedenen b) viele c) vielerlei), relative pronouns, two-part connectors, and adjective declension.
-*   **Options:** 3 multiple-choice options (a, b, c) per gap.
+## Teil 2 — Lexik-Lücken (Magazintext)
+Official [HB p. 38, Tipps p. 10]: simple newspaper/magazine article of general interest, 10 gaps, **word box of 15 options** (10 fit, **5 are left over**), focus on vocabulary (not inflection), all word classes occur. Skill design: length, the "each word once" rule and the distractor types.
+Build: a **magazine-style text of 180–230 words**, 10 gaps, a **box of 15 words a–o** (10 correct + 5 distractors), each word usable once. All word classes may appear (nouns, verbs, adjectives, adverbs, prepositions, conjunctions …). Gaps test vocabulary and function, not inflection: box words fit grammatically as given. Distractors: same word class and similar meaning as a correct word but wrong collocation or register.
+Save the full material as `material: {"gap_text":"...","word_box":["…", "..."]}` including all 15 words.
+**Category per gap = ONE key**: `word_choice_collocation` when the decisive reason is a collocation/Nomen-Verb-Verbindung/near-synonym; `sb_distractor_box` when the reason is the box mechanics (a distractor fits the sentence meaning but not the context, or an already-used word tempts). Never both.
 
-**Teil 2 (Lexis/Vocabulary Focus - Items 31-40):**
-*   **Format:** A newspaper or magazine article of general interest (e.g., language change, demographics, technology).
-*   **Gaps:** 10 gaps focusing on vocabulary, fixed collocations, and contextual meaning.
-    *   *Required Phenomena:* Test prepositional adverbs (dazu, damit), fixed idiomatic verb phrases (e.g., *Rüdiger [ 38 ] von diesem Anliegen wenig* -> HÄLT), functional verb structures (e.g., *zur Verfügung [ 39 ]* -> STEHEN), and required prepositions for specific verbs (e.g., *passt sich [ 35 ]* -> AN).
-*   **Options:** A single word bank (box) containing 15 options (a-o) for the 10 gaps. 5 words are distractors.
-    *   *Distractor Strategy:* Include visually or semantically similar words to trap the user (e.g., FORDERN vs. FÖRDERN, or WEIß vs. KENNT). All options must be fully capitalized.
+## Self-verification (mandatory, silent)
+1. Solve the finished task yourself with the key hidden: every gap has exactly ONE defensible answer. Try each distractor in each gap; none may fit.
+2. T2: each box word used at most once; exactly 5 unused; no unused word fits any gap.
+3. Gap numbers in the text = numbers in the options list (1–10, no leftovers, no example gap with a clashing number).
+4. T1 word count 150–200, T2 180–230.
 
-## 2. ⚠️ EXACT OUTPUT TEMPLATE REQUIREMENT
-You MUST format your output EXACTLY like the example below. Do NOT add conversational filler before the exam paper. Generate a hidden answer key internally, but DO NOT output it to the user.
+## Output template (format example only, never reuse content)
+```
+telc B2 · Sprachbausteine · Teil 1  (≈ 15 Min.)
+Lesen Sie den Text und wählen Sie für jede Lücke (1–10) die richtige Lösung a, b oder c.
 
-**30 Minuten Sprachbausteine — telc Deutsch B2**
+Liebe Frau Weber,
+vielen Dank für Ihre E-Mail. Ich freue mich __1__ Ihr Angebot, __2__ ich noch eine Frage habe …
 
-**Sprachbausteine, Teil 1**
-Lesen Sie den folgenden Text und entscheiden Sie, welches Wort (a, b oder c) in die jeweilige Lücke passt.
+1  a) auf   b) über   c) für
+2  a) deshalb   b) aber   c) weil
+…
+10 a) …
 
-Liebe Daniela,
-ich habe schon ein ganz schlechtes Gewissen, denn [ 21 ] wollte ich dir schon vor zwei Monaten schreiben. Aber du weißt ja, wie das ist: Wenn man sich auf eine Prüfung vorbereitet, hat [ 22 ] überhaupt keine Zeit mehr für seine Hobbys.
-Nun habe ich es aber geschafft: Gestern war die Prüfung und ich bin zuversichtlich, dass ich sie bestanden habe. Mein Freund, mit [ 23 ] Hilfe es mir überhaupt nur möglich war, diese ganze Zeit zu [ 24 ], hat mich für heute Abend in ein tolles Restaurant eingeladen.
-In deinem letzten Brief hast du mich gefragt, [ 25 ] ich Lust hätte, mit dir zusammen ein Wochenende in London zu verbringen... *(continue for 10 gaps)*
+Antwortbogen:  1 __  2 __  3 __  4 __  5 __  6 __  7 __  8 __  9 __  10 __
+--- ENDE DER AUFGABE ---
+```
+Teil 2: same header, text with `__1__`…`__10__`, then the box `a) … o)` in two columns, grid `1 __ … 10 __`; instruction "Jedes Wort passt nur einmal. Fünf Wörter bleiben übrig. Lassen Sie keine Lücke leer." (skill wording; the manuals say only that five options are left over [Tipps p. 10] and give "never leave a gap empty" as a tip).
+Save with slot `sb<part>`: `uv run $SKILL_DIR/tools/tutor.py task save --slot sb1` with stdin
+`{"level":"b2","module":"sprachbausteine","part":1,"topic":"T10","material":{"gap_text":"…","options":[{"n":1,"choices":["a) …","b) …","c) …"]}]},"items":[{"n":1,"answer":"a","category":"case_prepositions","why":"sich freuen auf + Akk"}]}`.
+Then one Franz line: time + answer format (`1a 2c …`).
 
-21. a) außerdem b) eigentlich c) überhaupt
-22. a) er b) es c) man
-23. a) der b) dessen c) seiner
-*(continue a,b,c options up to 30)*
-
-=======================================================
-
-**Sprachbausteine, Teil 2**
-Lesen Sie den folgenden Text und entscheiden Sie, welches Wort aus dem Kasten (a–o) in die Lücken 31–40 passt. Sie können jedes Wort im Kasten nur einmal verwenden. Nicht alle Wörter passen in den Text.
-
-**Es gibt immer weniger Deutsche**
-[ 31 ] Angaben des Statistischen Bundesamtes wird die Bevölkerungszahl in den nächsten fünfzig Jahren [ 32 ] sinken. Die Statistiker [ 33 ] damit, dass die Zahl bis zum Jahr 2050 stark zurückgehen wird. Das Gesundheitssystem und die Altersversorgung werden [ 34 ] dieser Entwicklung vor großen Problemen stehen... *(continue for 10 gaps)*
-
-=======================================================
-a) ABMILDERN | b) AN | c) AUF | d) AUFGRUND | e) DRASTISCH
-f) ERHÖHEN | g) FÜR | h) IM | i) INDESSEN | j) NACH
-k) RECHNEN | l) STATT | m) STEIGEN | n) ÜBERHEBLICH | o) UNTERSCHEIDEND
-
-=======================================================
-
-***
-**--------------------- END OF TASK --------------------**
-
-*Franz hier! Sprachbausteine sind wie ein Puzzle. Bei Teil 1 geht es um die Grammatik-Haken (schau nach links, schau nach rechts!), bei Teil 2 um Vokabeln, die gerne im Rudel reisen (Redemittel).*
-
-*Schick mir deine Lösungen einfach als Liste (z.B. 21b, 22c ... 31j, 32e), dann jage ich sie durch die `/telc b2 correct sprachbausteine` Maschine und wir schauen uns an, wo die fiesen Fallen versteckt waren!*
+## Common failure modes to avoid
+- Gap number mismatch between text and option list; a gap with two correct options.
+- T2: a distractor that fits a gap; more or fewer than 5 unused words.
+- Several categories on one gap, or keys not in the template.
+- Showing the key, `why`, or categories; forgetting to save in slot `sb1`/`sb2`.
+- Free-form layout instead of the template.

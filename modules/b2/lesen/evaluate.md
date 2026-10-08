@@ -1,41 +1,39 @@
-# Leseverstehen Evaluation Engine
+# Lesen — Evaluator
 
-**Execution Trigger:** `/telc b2 correct lesen`
+Trigger: `/telc b2 correct lesen [part]`. Load the slot `lesen<part>` (`uv run $SKILL_DIR/tools/tutor.py task show --slot lesen1`), the user's answers, `rules/feedback_format.md`. Without a part: use the most recent lesen slot from `task list`.
 
-## 1. Internal Scoring Protocol
-*   Compare the user's submitted answers (1-20) against the internally generated answer key.
-*   **Calculation:**
-    *   Teil 1 (Aufgaben 1-5): 5 points per correct answer (Max 25).
-    *   Teil 2 (Aufgaben 6-10): 5 points per correct answer (Max 25).
-    *   Teil 3 (Aufgaben 11-20): 2.5 points per correct answer (Max 25).
-*   Total maximum is 75 points (25% of the whole exam).
+## Steps (follow in order)
+1. Parse the answers (`1b 2a`, lists, or a grid). Missing answer = wrong (an empty item cannot score; the manuals do not say whether wrong answers are penalised, so recommend always guessing).
+2. Mark each item against the saved key. Count the correct ones; do not add points yourself.
+3. Run: `uv run $SKILL_DIR/tools/tutor.py score lesen<part> --correct N --record` (T1 5×5, T2 5×5, T3 10×2.5). Copy its numbers.
+4. For each WRONG item name the trap from the item's `category` and `why`, and quote the deciding sentence from saved `material`. T3: say which single condition ruled the user's choice out, or why `x` was right.
+5. Strategy line (one or two, only if relevant; official [Tipps p. 8–9]): T1 read the headlines first, read the texts globally for the main content, and at the end check that the unused headlines really can be excluded (several sound alike); T2 one wrong detail makes the whole option false, check hidden negations, decide from the text not from world knowledge, items follow the text order so read in parallel; T3 read the situations first, read each text to the end (don't decide too fast), each text only once, not every situation has a text → `x`.
+6. Record: `uv run $SKILL_DIR/tools/tutor.py errors <category>=1 …` (counts per category of wrong items). Then `uv run $SKILL_DIR/tools/tutor.py task graded --slot lesen<part>` (do not clear).
+7. Print the Output template.
 
-## 2. Processing Steps
+## Franz angle
+Reading traps are *trust* problems: the user trusted a keyword instead of the sentence. Say it once, with a mnemonic. 4–5 of 5 in T1/T2 over two attempts is a good sign (tip, no official claim); suggest the next part.
 
-### Step 1: The Scorecard
-Output this exact table:
-| Bereich | Richtig | Falsch | Rohpunkte |
-| :--- | :---: | :---: | :---: |
-| **Teil 1 (Globalverstehen)** | [x/5] | [y/5] | [x * 5] / 25 |
-| **Teil 2 (Detailverstehen)** | [x/5] | [y/5] | [x * 5] / 25 |
-| **Teil 3 (Selektives Lesen)** | [x/10] | [y/10] | [x * 2.5] / 25 |
-**Ergebnis Leseverstehen:** `[Total Score] / 75 Punkte`
+## Output template (format example only, never reuse content)
+```
+**Lesen · Teil 2: 3 / 5 richtig = 15 von 25 Punkten (60 %)**  — Solide, aber zwei Details haben dich ausgetrickst.
 
-### Step 2: Error Breakdown (The Franz Method)
-Load `rules/persona_franz.md` and update `memory/error_profile.json` (specifically using the "telc_b2" key). **ONLY output feedback for the INCORRECT answers.** Do not over-explain correct answers.
+| Item | Du | Lösung | Falle |
+| :-- | :-- | :-- | :-- |
+| 2 | a | c | lesen_detail_trap — Text: „…ab dem dritten Monat…“, Option a sagt „ab dem ersten“ |
+| 4 | b | a | lesen_negation_trap — „kaum“ ≠ „nie“ |
 
-Format each error as:
-`Aufgabe [Number]: ~~[User's Answer]~~ -> **[Correct Answer]**`
+**Top-3 Lektionen**
+1. ~~Option a~~ → **Option c** · Warum: ein falsches Detail macht die ganze Option falsch. Bild: ein Kuchen mit einem Salzkorn pro Stück. `lesen_detail_trap`
+2. …
 
-For EACH error, Franz will step in to supply:
-1. **The Franz Explanation:**
-   * *For Teil 1 (Global):* Explain why the user's chosen headline was a "Micro-Detail Trap" (it only mentioned one word/detail from the text) while the correct headline captures the "Global Umbrella".
-   * *For Teil 2 (Detail):* Point out the exact synonym, antonym, or modal verb trick in the text that changes the meaning. Debunk "absolutisms" (e.g., the text says *many*, the wrong answer says *all*).
-   * *For Teil 3 (Selective):* Identify the specific "Dealbreaker Keyword" in the situation (e.g., *am Wochenende*, *kostenlos*, *für Kinder*, *für Anfänger*) that the user ignored when they picked their text. If the correct answer is 'x', explicitly prove how the closest text failed at least one condition.
-2. **Absurd Visual Mnemonic:** A vivid, atypically funny visual anchor to remember the reading strategy (e.g., "The 'X' in Teil 3 is a grumpy bouncer rejecting everyone who doesn't have the exact VIP ticket combo").
-3. **Native Reading Strategy:** Provide a brief tip on how to scan German texts faster (e.g., scanning for contrast connectors like *jedoch* or *dennoch* where the real answer hides, or watching out for double negatives).
+**Nächster Schritt:** Lesen 2 noch einmal mit neuem Thema.
+```
+Tool calls used: `score lesen2 --correct 3 --record` → `errors lesen_detail_trap=1 lesen_negation_trap=1` → `task graded --slot lesen2`.
 
-### Step 3: Update Error Cache
-Extract the reading error categories and format them to dynamically update `memory/error_profile.json`.
-* Use specific categories matching the reading traps (e.g., *Globalverstehen-Micro-Traps, Detailverstehen-Synonym-Traps, Detailverstehen-Absolutisms, Selektives-Lesen-Dealbreaker, Selektives-Lesen-X-Failure*).
-* Highlight the highest-weighted weak spots the user must target in their next session.
+## Common failure modes to avoid
+- Computing points yourself or rounding differently from the tool.
+- Forgetting `--record`, recording errors for correct items, or inventing category keys.
+- Revealing the key before the user answered; grading from a different slot than the one the user practised.
+- Calling `task clear` (keep the task for disputes) or recording a second time on a re-check.
+- More than 3 lessons, no quote from the text, or free-form layout.
