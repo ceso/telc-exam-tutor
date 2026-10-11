@@ -25,8 +25,8 @@ TTS voices are synthetic: good for listening-comprehension practice, not a copy 
 6. Audio (try in this order):
    a. `uv run $SKILL_DIR/tools/tts.py check`. If OK: render the saved task script with `uv run $SKILL_DIR/tools/tts.py render --slot hoeren<part>` (or pass the same script JSON on stdin with `render -`): it writes one mp3 per text id into `$TELC_HOME/audio` and records the paths (relative to `$TELC_HOME`) as `audio` + `audio_status: "rendered"` in the saved task. On failure the task gets `audio_status: "failed"`. Turn-based texts use `{"id":"h2_iv","turns":[{"voice":"katja","text":"…"},{"voice":"conrad","text":"…"}]}`. Voices: katja (de-DE-KatjaNeural), conrad (ConradNeural), amala (de-DE-AmalaNeural), killian (de-DE-KillianNeural).
    b. The user can plug their own TTS: `tts.py config set --provider command --command '<template with {text} {out}>'`.
-   c. No audio possible: tell the user honestly, show the statements now and keep the transcript until after they answered (see evaluator).
-7. Show the task from `uv run $SKILL_DIR/tools/tutor.py task show --slot hoeren<part> --public` (template below): it hides key, `why` and script until graded, and its `audio_status` (`rendered` / `failed` / `none`) says whether to list audio files or use the no-audio variant. **Never print the script, the key or `why`** before the user answered.
+   c. No audio possible: tell the user honestly that this becomes **Lesetraining, not Hören**. Show the transcript FIRST (to be read once, no re-reading), then the statements; nothing is hidden because the user has nothing to answer from otherwise. The score is not recorded as a listening result (see evaluator).
+7. Show the task from `uv run $SKILL_DIR/tools/tutor.py task show --slot hoeren<part> --public` (template below): it hides key, `why` and script until graded, and its `audio_status` (`rendered` / `failed` / `none`) says whether to list audio files or use the no-audio variant. **Never print the key or `why`** before the user answered, and never the script when audio is `rendered`. Exception, no audio (6c): print ONLY the texts of the script (no statements' answers, no `why`) above the statements.
 
 ## Output template (format example only, never reuse content)
 ```
@@ -46,7 +46,7 @@ Audio (der Reihe nach, jede Datei nur EINMAL, nicht zurückspulen):
 Antwortbogen:  1 __  2 __  3 __  4 __  5 __
 --- ENDE DER AUFGABE ---
 ```
-No-audio variant: replace the audio block with "Kein Audio verfügbar. Antworte aus deinem Gefühl nicht; ich zeige dir das Transkript erst nach deinen Antworten (Lesen ist kein Hören)." Teil 2 header: "Gespräch (≈ 7 Min.), 10 Aussagen, 1 Minute Vorbereitung". Teil 3: "Fünf Ansagen, 5 Aussagen". Then one Franz line: "Hör einmal, antworte `1r 2f …`."
+No-audio variant: replace the audio block with "Kein Audio verfügbar. Das hier ist Lesetraining, kein Hören: Lies das Transkript einmal, dann beantworte die Aussagen." Teil 2 header: "Gespräch (≈ 7 Min.), 10 Aussagen, 1 Minute Vorbereitung". Teil 3: "Fünf Ansagen, 5 Aussagen". Then one Franz line: "Hör einmal, antworte `1r 2f …`." (no-audio variant: "Lies einmal, antworte `1r 2f …`.")
 
 ## Common failure modes to avoid
 - Printing transcript, key, `why` or filenames that reveal content (use neutral ids `h1_n1`).

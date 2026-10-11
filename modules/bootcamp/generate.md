@@ -26,7 +26,7 @@ This measures **drill accuracy on your top error patterns**, not exam points and
 | D: Final check | L−2 … L | `drill --final` items, 3 per target, no hints, fresh content (the tool's `todays_allocation` switches to this). |
 
 ## 2. Item design
-Every item must have ONE defensible answer. Time target: ≤ 40 seconds per item; **exemption:** Phase C micro-tasks may take up to 2 minutes each, and the 15 items then shrink to what fits ≈ 20 min.
+Every item must have ONE defensible answer (for "Fix it"/"Produce it": one target structure, and `accept` lists every correct variant, e.g. other neutral Mittelfeld orders, Perfekt and Präteritum). **Before showing, re-solve every item silently** with the answer hidden: "Fix it" has exactly one error, "Choose it" exactly one fitting option, "Spot it" exactly one wrong sentence; the saved `answer` and `why` pass the Correction safety protocol (`rules/feedback_format.md`; check the high-risk list). Doubtful → replace the item. Time target: ≤ 40 seconds per item; **exemption:** Phase C micro-tasks may take up to 2 minutes each, and the 15 items then shrink to what fits ≈ 20 min.
 Rotate these formats within a category (≥ 2 per session):
 1. **Fix it** — sentence with the error; the user rewrites it.
 2. **Produce it** — prompt forcing the structure ("Combine with *obwohl*: …").
@@ -38,11 +38,11 @@ Item recipes by category key (every key exists in `memory/error_profile.template
 | Key | Typical item |
 | :-- | :-- |
 | `verb_position` | Fix: Nebensatz verb not at the end / inversion after position 1. Produce: combine with *weil, obwohl, dass, damit, nachdem*, starting with the second clause. |
-| `middlefield_order` | Put 4–5 boxes in the frame (pronoun, time, place, *nicht*). |
+| `middlefield_order` | Put 4–5 boxes in the frame (pronoun, time, place, *nicht*); several neutral orders are often correct: put all of them in `accept`, or test only the clear cases (unstressed pronoun early, *nicht* before the defining part). |
 | `case_prepositions` | Preposition + noun-phrase gaps incl. Wechselpräpositionen and fixed pairs (*warten auf + Akk*). |
 | `adjective_endings` | Declined phrases after definite/indefinite/zero article; Franz hack + exceptions. |
 | `article_gender_agreement` | Gender of 10 nouns via suffix patterns; noun–pronoun agreement. |
-| `verb_forms_tense` | Perfekt vs Präteritum in writing, Partizip, Passiv, *wäre/hätte/würde*. |
+| `verb_forms_tense` | Partizip II forms, Passiv, *wäre/hätte/würde*, *es gibt* with modals (*es sollte … geben*). Never an item where only Perfekt or only Präteritum is "right": both are correct for the past. |
 | `relative_pronouns` | Pronoun by antecedent gender + own-clause case; build a relative clause. |
 | `pronominaladverbien` | *darauf, daran, worüber, wofür*; person → *auf ihn*, thing → *darauf*. |
 | `connectors_variety` | Replace *aber/weil/und* with B2 connectors with correct word order. |
@@ -53,7 +53,7 @@ Item recipes by category key (every key exists in `memory/error_profile.template
 | `email_form_elements` | Betreff + Anrede + Schlussformel for a scenario. |
 | `lesen_detail_trap`, `lesen_negation_trap`, `lesen_headline_trap`, `lesen_x_trap`, `lesen_other_trap` | 80–120-word mini-text + 2 questions isolating the trap in the key. |
 | `sb_grammar_gap`, `sb_distractor_box` | 3-gap mini-cloze with the exam's trap; explain the rejected option. |
-| `text_too_short`, `simple_structures_only`, `vocabulary_copied_from_prompt`, `thema_situierung_verfehlt` | Produce it: expand a 2-line stub to ≥ 150 words / upgrade 3 simple sentences to Satzgefüge / paraphrase 3 prompt phrases / write the Situierung sentence. |
+| `text_too_short`, `simple_structures_only`, `vocabulary_copied_from_prompt`, `thema_situierung_verfehlt` | Produce it: expand a 2-line stub to ≥ 150 words / upgrade 3 simple sentences to complex sentences (depth practice, not an official counting rule) / paraphrase 3 prompt phrases / write the Situierung sentence. |
 
 ## 3. Output template (format example only, never reuse content)
 ```

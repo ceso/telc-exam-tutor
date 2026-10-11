@@ -87,7 +87,7 @@ das Verzeichnis. Die Helfer nutzen nur `uv` und die Python-Standardbibliothek;
 ## Installation, erster Start und Tests
 
 Voraussetzung ist [`uv`](https://docs.astral.sh/uv/). Lege den Skill so ab,
-dass `SKILL.md` direkt im Skill-Ordner liegt, lade die Skills im Agenten neu
+dass `SKILL.md` direkt im Skill-Ordner liegt (der Befehlsname kommt aus `name: telc` in `SKILL.md`, der Ordnername ist egal), lade die Skills im Agenten neu
 und prüfe mit `/telc help`.
 
 1. Optional: `/telc exam-date 2026-12-05` (ISO-Format; steuert Plan und

@@ -16,7 +16,7 @@ Save the full material as `material: {"gap_text":"...","word_box":["…", "..."]
 **Category per gap = ONE key**: `word_choice_collocation` when the decisive reason is a collocation/Nomen-Verb-Verbindung/near-synonym; `sb_distractor_box` when the reason is the box mechanics (a distractor fits the sentence meaning but not the context, or an already-used word tempts). Never both.
 
 ## Self-verification (mandatory, silent)
-1. Solve the finished task yourself with the key hidden: every gap has exactly ONE defensible answer. Try each distractor in each gap; none may fit.
+1. Solve the finished task yourself with the key hidden: every gap has exactly ONE defensible answer. Try each distractor in each gap in the FULL sentence and context; none may fit, not even with another meaning (e.g. *sich freuen über/auf* both fit unless the context fixes past vs future). Doubtful gap → rewrite it. Check the key's `why` states a true rule.
 2. T2: each box word used at most once; exactly 5 unused; no unused word fits any gap.
 3. Gap numbers in the text = numbers in the options list (1–10, no leftovers, no example gap with a clashing number).
 4. T1 word count 150–200, T2 180–230.
@@ -27,7 +27,7 @@ telc B2 · Sprachbausteine · Teil 1  (≈ 15 Min.)
 Lesen Sie den Text und wählen Sie für jede Lücke (1–10) die richtige Lösung a, b oder c.
 
 Liebe Frau Weber,
-vielen Dank für Ihre E-Mail. Ich freue mich __1__ Ihr Angebot, __2__ ich noch eine Frage habe …
+vielen Dank für Ihre E-Mail. Ich freue mich schon __1__ unser Treffen am Freitag. Ich schreibe Ihnen, __2__ ich noch eine Frage habe …
 
 1  a) auf   b) über   c) für
 2  a) deshalb   b) aber   c) weil

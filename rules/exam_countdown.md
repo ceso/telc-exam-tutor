@@ -30,7 +30,7 @@ If `days_left < 0` the stored date is past: ask for the next exam date. Print on
 ## Exam week (last 7 days before the exam)
 | T-minus | Plan |
 | :-- | :-- |
-| T-7 | **Mock Lesen + Sprachbausteine, 90 min timed** (Antwortbogen transfer ≈ 10 min inside the 90) + `block-total`. |
+| T-7 | **Mock Lesen + Sprachbausteine, 90 min timed** (Antwortbogen transfer inside the 90; ≈ 10 min is a tip) + `block-total`. |
 | T-6 | Schriftlich timed 30 min (copy the task number!) · Hören 1–3 · 1 bootcamp micro-session (10). |
 | T-5 | Sprechen full run T1–T3 (≈ 20) · 1 micro-session (10). |
 | T-4 | Mock Lesen + SB 90 min · `block-total`. |
@@ -46,4 +46,4 @@ If `days_left < 0` the stored date is past: ask for the next exam date. Print on
 
 ## Realistic expectations
 - Mastery = ≥ 80 % in the last 10 drill items, on ≥ 3 dates over a minimum span, plus a final check: it measures drill accuracy on your top error patterns, not exam points. The bootcamp goal is ≥60% of targets (3/5 or 2/3).
-- A single mock total is noisy (about ±10 %); judge the trend over 2–3 mocks. Official pass rule: 60 % of the written part (135/225) AND of the oral part (45/75), see the architecture file §1.
+- A single mock total is noisy (rough skill estimate: about ±10 %); judge the trend over 2–3 mocks. Official pass rule: 60 % of the written part (135/225) AND of the oral part (45/75), see the architecture file §1.

@@ -1,14 +1,14 @@
 # Lesen — Evaluator
 
-Trigger: `/telc b2 correct lesen [part]`. Load the slot `lesen<part>` (`uv run $SKILL_DIR/tools/tutor.py task show --slot lesen1`), the user's answers, `rules/feedback_format.md`. Without a part: use the most recent lesen slot from `task list`.
+Trigger: `/telc b2 correct lesen [part]`. **Every correction obeys the Correction safety protocol in `rules/feedback_format.md`.** Load the slot `lesen<part>` (`uv run $SKILL_DIR/tools/tutor.py task show --slot lesen1`), the user's answers, `rules/feedback_format.md`. Without a part: use the most recent lesen slot from `task list`.
 
 ## Steps (follow in order)
-1. Parse the answers (`1b 2a`, lists, or a grid). Missing answer = wrong (an empty item cannot score; the manuals do not say whether wrong answers are penalised, so recommend always guessing).
-2. Mark each item against the saved key. Count the correct ones; do not add points yourself.
+1. Parse the answers (`1b 2a`, lists, or a grid). Missing answer = wrong (an empty item cannot score; the manuals do not say whether wrong answers are penalised, so recommend always guessing). If an answer is unreadable or could mean two letters, ask once instead of guessing.
+2. Mark each item against the saved key (never from memory, never a key re-derived now). Then **key check for every item the user got wrong:** re-read the deciding passage of the saved `material` for both the key and the user's choice. If the user's choice is also defensible from the text, or the key is not clearly supported, say so ("Item 3 ist mehrdeutig, mein Fehler"), count it as correct and record no error for it. Never change a key without a quoted sentence that proves it. Count the correct ones; do not add points yourself.
 3. Run: `uv run $SKILL_DIR/tools/tutor.py score lesen<part> --correct N --record` (T1 5×5, T2 5×5, T3 10×2.5). Copy its numbers.
 4. For each WRONG item name the trap from the item's `category` and `why`, and quote the deciding sentence from saved `material`. T3: say which single condition ruled the user's choice out, or why `x` was right.
 5. Strategy line (one or two, only if relevant; official [Tipps p. 8–9]): T1 read the headlines first, read the texts globally for the main content, and at the end check that the unused headlines really can be excluded (several sound alike); T2 one wrong detail makes the whole option false, check hidden negations, decide from the text not from world knowledge, items follow the text order so read in parallel; T3 read the situations first, read each text to the end (don't decide too fast), each text only once, not every situation has a text → `x`.
-6. Record: `uv run $SKILL_DIR/tools/tutor.py errors <category>=1 …` (counts per category of wrong items). Then `uv run $SKILL_DIR/tools/tutor.py task graded --slot lesen<part>` (do not clear).
+6. Record: `uv run $SKILL_DIR/tools/tutor.py errors <category>=1 …` (counts per category of wrong items; ambiguous items excluded). Then `uv run $SKILL_DIR/tools/tutor.py task graded --slot lesen<part>` (do not clear).
 7. Print the Output template.
 
 ## Franz angle
@@ -37,3 +37,4 @@ Tool calls used: `score lesen2 --correct 3 --record` → `errors lesen_detail_tr
 - Revealing the key before the user answered; grading from a different slot than the one the user practised.
 - Calling `task clear` (keep the task for disputes) or recording a second time on a re-check.
 - More than 3 lessons, no quote from the text, or free-form layout.
+- Defending a key that the text does not clearly support; a "trap" explanation that the quoted sentence does not prove.

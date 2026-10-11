@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic helper for the telc-exam-tutor skill (stdlib only).
+"""Deterministic helper for the telc skill (stdlib only).
 
 Run with:  uv run $SKILL_DIR/tools/tutor.py <command> ...
 State lives in $TELC_HOME (default ~/.config/telc-tutor): profile.json and tasks/<slot>.json.

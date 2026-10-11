@@ -12,7 +12,7 @@ Use these as inspiration for correct, varied phrasing; do not memorise whole tex
 | Beschwerde | *Zu meinem Bedauern musste ich feststellen, dass …* · *Das entspricht nicht dem, was Sie angekündigt haben.* · *Ich erwarte, dass …* · *Ich bitte Sie daher, … zu erstatten / zu beheben.* |
 | Begründen / verknüpfen | *da · weil · denn · deshalb · deswegen · folglich · dennoch · trotzdem · obwohl · während · sofern · indem · zwar … aber* |
 | Vorschlag / Lösung | *Ich schlage vor, dass …* · *Ich würde es begrüßen, wenn …* · *Als Entschädigung hielte ich … für angemessen.* |
-| Schluss | *Ich freue mich auf Ihre Antwort.* · *Über eine baldige Rückmeldung wäre ich Ihnen sehr dankbar.* |
+| Schluss | *Ich freue mich auf Ihre Antwort.* · *Für eine baldige Rückmeldung wäre ich Ihnen sehr dankbar.* |
 
 ## Sprechen T1 — über Erfahrungen sprechen
 *Ich möchte über … sprechen, weil …* · *Das war für mich … , denn …* · *Was mich besonders beeindruckt hat, war …* · *Im Nachhinein betrachtet …* · Partner fragen: *Hast du auch schon einmal …?* · *Wie siehst du das?* · *Und wie war das bei dir?*

@@ -1,5 +1,5 @@
 ---
-name: telc-exam-tutor
+name: telc
 description: Use when the user wants to prepare for a telc exam with AI (currently only level B2 is implemented). Triggers on "/telc", "telc", "Sprachbausteine", "Leseverstehen", "Hörverstehen", "Schriftlicher Ausdruck", "Sprechen", "telc bootcamp", "telc plan", or requests to generate or correct telc exercises. Generates exam-faithful tasks, grades them with the official telc rubrics, runs a Top-5-mistakes bootcamp and an exam countdown plan with the tutor persona Franz.
 version: 2.0.0
 ---
@@ -53,7 +53,7 @@ Run `uv run $SKILL_DIR/tools/tutor.py status` (creates the profile if missing). 
 4. Add one Franz line: recommended time + how to submit answers (just send them; correction starts automatically).
 
 ### P2 — Correct
-**Auto-trigger:** whenever the user sends an answer to a task generated in this skill (pasted text, item answers such as "1 a, 2 c…", a Sprechen reply), run P2 immediately for the matching slot, for every module and level, without waiting for `/telc … correct`. Find the slot via `tutor.py task list` (the most recently generated ungraded task; if several are ungraded and the answer is ambiguous, ask which one in a single line). An explicit `correct` command behaves the same.
+**Auto-trigger:** whenever the user sends an answer to a task generated in this skill (pasted text, item answers such as "1 a, 2 c…"), run P2 immediately (exception: Sprechen turns are dialogue, not answers; grade Sprechen only after the dialogue is closed or on `correct sprechen`) for the matching slot, for every module and level, without waiting for `/telc … correct`. Find the slot via `tutor.py task list` (the most recently generated ungraded task; if several are ungraded and the answer is ambiguous, ask which one in a single line). An explicit `correct` command behaves the same.
 1. `tutor.py task show --slot <slot>`. If missing, say so and offer to generate one (no grading without a key; `schriftlich` needs only the saved task text). If `graded` is already true, say it was graded and offer a re-check or a new task; `score`/`score-writing`/`score-speaking` refuse a graded slot unless `--recheck` is passed, which you do only on explicit user request.
 2. If the user sent nothing gradable: *"Franz hier! Schick mir deine Antworten bzw. deinen Text, dann legen wir los."*
 3. Load the module's `evaluate.md`, grade, record via `tutor.py` (`score` / `score-writing` / `score-speaking` with `--record`, then `errors <category>=<n> …`), then `tutor.py task graded --slot <slot>`. Sprechen is recorded via `score-speaking <part>` as a separate estimate; Hören uses `score`. Do NOT clear the task (it stays for dispute re-checks until the next generate in that slot).
@@ -73,5 +73,6 @@ Exam material is German. Franz explains in the user's language (default English)
 - Never invent official telc rules. If the architecture file does not say it (or marks it derived/skill design), label it "tip" or "skill design".
 - Never grade from memory; always use the saved task.
 - Genuinely ambiguous item: say so and give the benefit of the doubt to the user.
+- Every correction in every module follows the **Correction safety protocol** in `rules/feedback_format.md` (true rule, no over-correction, slips not counted, record only confirmed errors, concede disputes plainly).
 - Hören/Sprechen via TTS or text are practice, not the telc audio. State this once per session.
 - Hören/Sprechen official tips: `rules/telc_<level>_architecture.md` §6.
